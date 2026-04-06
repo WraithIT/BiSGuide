@@ -61,6 +61,7 @@ closeBtn:SetScript("OnClick", function() panel:Hide() end)
 local selectedDropdownClass = nil  -- index into ns.ALL_CLASSES
 local selectedDropdownSpec = nil   -- spec name string
 local scrollFrame  -- forward declaration (created later, used in ApplySelection)
+local InitDropdownDefaults  -- forward declaration (defined later, used in class dropdown click)
 
 -- Dropdown button helper
 local function CreateDropdownButton(parent, width)
@@ -236,11 +237,8 @@ classBtn:SetScript("OnClick", function(self)
     ShowMenu(self, entries, function(entry)
         if entry.value == 0 then
             -- Reset to player
-            selectedDropdownClass = nil
-            selectedDropdownSpec = nil
             ns:ResetView()
-            classBtn.text:SetText("|cff00ff00My Character|r")
-            specBtn.text:SetText("")
+            InitDropdownDefaults()
             ns:UpdateUI()
         else
             selectedDropdownClass = entry.value
@@ -608,7 +606,7 @@ end
 -- Hook into CharacterFrame
 ----------------------------------------------------------------------
 
-local function InitDropdownDefaults()
+function InitDropdownDefaults()
     -- Set dropdowns to player's current class/spec
     local playerClassFile = ns:GetPlayerClass()
     local playerSpec = ns:GetPlayerSpec()
