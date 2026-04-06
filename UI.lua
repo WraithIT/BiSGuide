@@ -55,6 +55,43 @@ closeBtn:SetPoint("TOPRIGHT", panel, "TOPRIGHT", -2, -2)
 closeBtn:SetScript("OnClick", function() panel:Hide() end)
 
 ----------------------------------------------------------------------
+-- Loot Tracker button
+----------------------------------------------------------------------
+
+local trackerBtn = CreateFrame("Button", nil, panel, "BackdropTemplate")
+trackerBtn:SetSize(24, 24)
+trackerBtn:SetPoint("RIGHT", closeBtn, "LEFT", 0, 0)
+trackerBtn:SetBackdrop({
+    bgFile   = "Interface\\Buttons\\WHITE8x8",
+    edgeFile = "Interface\\Buttons\\WHITE8x8",
+    edgeSize = 1,
+})
+trackerBtn:SetBackdropColor(0.15, 0.15, 0.2, 0.9)
+trackerBtn:SetBackdropBorderColor(0.4, 0.4, 0.5, 1)
+
+trackerBtn.icon = trackerBtn:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+trackerBtn.icon:SetPoint("CENTER", 0, 1)
+trackerBtn.icon:SetText("T")
+trackerBtn.icon:SetTextColor(1, 0.82, 0)
+
+trackerBtn:SetScript("OnClick", function()
+    if ns.ToggleLootTracker then
+        ns:ToggleLootTracker()
+    end
+end)
+trackerBtn:SetScript("OnEnter", function(self)
+    self:SetBackdropColor(0.25, 0.25, 0.35, 0.9)
+    GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
+    GameTooltip:SetText("Loot Tracker")
+    GameTooltip:AddLine("Track items you need from bosses", 0.7, 0.7, 0.7)
+    GameTooltip:Show()
+end)
+trackerBtn:SetScript("OnLeave", function(self)
+    self:SetBackdropColor(0.15, 0.15, 0.2, 0.9)
+    GameTooltip:Hide()
+end)
+
+----------------------------------------------------------------------
 -- Class / Spec dropdowns
 ----------------------------------------------------------------------
 
@@ -638,6 +675,7 @@ end
 
 local function OnCharacterFrameHide()
     ns:HidePanel()
+    if ns.HideLootTracker then ns:HideLootTracker() end
 end
 
 local hookFrame = CreateFrame("Frame")

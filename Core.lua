@@ -200,6 +200,9 @@ frame:SetScript("OnEvent", function(self, event, ...)
                 lastContentType = "raid",
             }
         end
+        if not BiSGuideDB.trackedLoot then
+            BiSGuideDB.trackedLoot = {}
+        end
 
         -- Announce
         local classColor = RAID_CLASS_COLORS[playerClassFile]
@@ -242,11 +245,14 @@ SlashCmdList["BISGUIDE"] = function(msg)
         BiSGuideDB.lastContentType = msg
         if ns.ShowPanel then ns:ShowPanel() end
         if ns.UpdateUI then ns:UpdateUI() end
+    elseif msg == "tracker" or msg == "loot" then
+        if ns.ToggleLootTracker then ns:ToggleLootTracker() end
     else
         print("|cff00ccffBiS Guide|r commands:")
         print("  /bis - Toggle BiS panel")
         print("  /bis raid - Show raid BiS")
         print("  /bis m+ - Show M+ BiS")
         print("  /bis pvp - Show PvP BiS")
+        print("  /bis tracker - Toggle Loot Tracker")
     end
 end

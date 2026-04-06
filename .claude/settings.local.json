@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "WebFetch(domain:u.gg)",
+      "WebSearch",
+      "Bash(python3 -c \" import sys, json raw = sys.stdin.read\\(\\).strip\\(\\) if raw.endswith\\(';'\\): raw = raw[:-1] d = json.loads\\(raw\\) for k in d.keys\\(\\): print\\(k\\) \")",
+      "Bash(node -e ':*)",
+      "Bash(node:*)",
+      "Bash(python -c ':*)",
+      "Bash(python scraper/scraper.py --output \"C:/Program Files \\(x86\\)/World of Warcraft/_retail_/Interface/AddOns/BiSGuide/Data.lua\")"
+    ]
+  }
+}

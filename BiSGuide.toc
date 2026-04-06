@@ -8,4 +8,6 @@
 
 Data.lua
 Core.lua
+InstanceData.lua
 UI.lua
+LootTracker.lua
