@@ -1,0 +1,3 @@
+__pycache__/
+scraper/item_cache.json
+*.pyc

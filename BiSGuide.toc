@@ -1,0 +1,11 @@
+## Interface: 120000
+## Title: BiS Guide
+## Notes: Shows Best-in-Slot gear sets for your class/spec (Raid, M+, PvP)
+## Author: Ciro
+## Version: 1.0.0
+## SavedVariables: BiSGuideDB
+## DefaultState: enabled
+
+Data.lua
+Core.lua
+UI.lua
